@@ -8,6 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Bookmark;
+use App\Models\CourseMember;
+use App\Models\Announcement;
+use App\Models\Course;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -52,5 +57,15 @@ class User extends Authenticatable
     public function enrolledCourses()
     {
         return $this->hasMany(CourseMember::class, 'user_id');
+    }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class, 'user_id');
     }
 }

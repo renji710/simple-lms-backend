@@ -5,14 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CourseMember extends Model
+class Announcement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'course_id',
         'user_id',
-        'roles',
+        'title',
+        'content',
+        'publish_date',
+    ];
+
+    protected $casts = [
+        'publish_date' => 'datetime',
     ];
 
     public function course()
@@ -24,10 +30,4 @@ class CourseMember extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function completions()
-    {
-        return $this->hasMany(Completion::class, 'member_id');
-    }
-    
 }

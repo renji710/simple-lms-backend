@@ -25,4 +25,5 @@ class Comment extends Model
     {
         return $this->belongsTo(CourseMember::class, 'member_id');
     }
+    
 }

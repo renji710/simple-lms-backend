@@ -32,4 +32,19 @@ class CourseContent extends Model
     {
         return $this->hasMany(CourseContent::class, 'parent_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'content_id');
+    }
+
+    public function completions()
+    {
+        return $this->hasMany(Completion::class, 'content_id');
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class, 'content_id');
+    }
 }
